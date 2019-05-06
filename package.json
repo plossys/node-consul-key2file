@@ -1,0 +1,42 @@
+{
+  "name": "@sealsystems/consul-key2file",
+  "version": "0.0.0",
+  "description": "Provides support of reading values from consul and writes it to file.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "test-run",
+    "test:coverage": "test-coverage",
+    "test:coverage:check": "test-coverage-check",
+    "test:report": "test-report",
+    "bot": "bot",
+    "lint": "lint",
+    "lint:fix": "lint-fix",
+    "release": "release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sealsystems/node-consul-key2file.git"
+  },
+  "keywords": [
+    "consul",
+    "file"
+  ],
+  "author": "SEAL Systems AG",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sealsystems/node-consul-key2file/issues"
+  },
+  "homepage": "https://github.com/sealsystems/node-consul-key2file#readme",
+  "devDependencies": {
+    "@sealsystems/eslint-config-es": "3.3.5",
+    "@sealsystems/mocha": "2.0.3",
+    "@sealsystems/semantic-release": "4.0.1",
+    "@sealsystems/test-config-jest": "1.0.5"
+  },
+  "release": {
+    "extends": "@sealsystems/semantic-release-config/node-module"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
