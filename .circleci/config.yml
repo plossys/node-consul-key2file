@@ -36,13 +36,13 @@ jobs:
             - ./node_modules
       - run:
           name: Run tests
-          command: npm run bot
-      - run:
-          name: Run code coverage
-          command: npm run test:coverage
-      - store_artifacts:
-          path: coverage/lcov-report
-          destination: coverage
+          command: npm run test
+      # - run:
+      # name: Run code coverage
+      # command: npm run test:coverage
+      # - store_artifacts:
+      # path: coverage/lcov-report
+      # destination: coverage
 
   release:
     docker:
