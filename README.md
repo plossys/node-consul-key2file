@@ -17,5 +17,19 @@ First you need to add a reference to @sealsystems/consul-key2file within your ap
 
 ```javascript
 const ConsulIO = require('@sealsystems/consul-key2file');
+
+const consulIO = new ConsulIO({ consulUrl: 'http://localhost:8500'});
+
+// Sets a value
+await consulIO.setValue('dc1/home/env/test/path', 'testkey', 'testvalue');
+
+// Gets a value
+const value = await consulIO.getValue('dc1/home/env/test/path', 'testkey'); // returns 'testvalue'
+
+// Writes a value to file
+await consulIO.key2file('dc1/home/env/test/path', 'testkey', './testfile');
+
+// Reads the content of a file and writes it as value to a key
+await consulIO.file2key('dc1/home/env/test/path', 'testkey', './testfile');
 ```
 
