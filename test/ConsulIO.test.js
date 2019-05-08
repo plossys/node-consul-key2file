@@ -71,7 +71,6 @@ describe('ConsulIO', () => {
 
   describe('getValue', () => {
     let cio;
-    const testfile = './testfile';
     const testpath = 'dc1/home/env/test/path';
     const urlSuffix = 'v1/kv';
 
