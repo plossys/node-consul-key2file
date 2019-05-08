@@ -68,4 +68,31 @@ describe('ConsulIO', () => {
       expect(fs.readFileSync(testfile).toString()).toStrictEqual('testvalue');
     });
   });
+
+  describe('getValue', () => {
+    let cio;
+    const testfile = './testfile';
+    const testpath = 'dc1/home/env/test/path';
+    const urlSuffix = 'v1/kv';
+
+    beforeAll(async () => {
+      const consulUrl = 'https://localhost:8500';
+      const options = { consulUrl };
+      const consulHelper = new ConsulHelper(options);
+
+      await consulHelper.putConfig(`${urlSuffix}/${testpath}`, 'testkey', 'testvalue');
+
+      cio = new ConsulIO(options);
+    });
+
+    it('must be a function', async () => {
+      expect(typeof cio.getValue).toStrictEqual('function');
+    });
+
+    it('must get specified value from given key and path and write it to given file', async () => {
+      await (async () => {
+        return expect(cio.getValue(testpath, 'testkey')).resolves.toEqual('testvalue');
+      })();
+    });
+  });
 });
