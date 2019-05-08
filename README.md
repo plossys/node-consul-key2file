@@ -16,6 +16,6 @@ npm install @sealsystems/consul-key2file
 First you need to add a reference to @sealsystems/consul-key2file within your application.
 
 ```javascript
-const consulHelper = require('@sealsystems/consul-key2file');
+const ConsulIO = require('@sealsystems/consul-key2file');
 ```
 
