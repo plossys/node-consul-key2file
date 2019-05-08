@@ -8,6 +8,13 @@ const ConsulIO = require('../lib/ConsulIO');
 /* eslint-disable no-sync */
 /* eslint-disable no-new */
 describe('ConsulIO', () => {
+  let cio;
+  const testfile = './testfile';
+  const testpath = 'dc1/home/env/test/path';
+  const urlSuffix = 'v1/kv';
+  const consulUrl = 'https://localhost:8500';
+  const options = { consulUrl };
+
   it('must be a class', async () => {
     expect(typeof ConsulIO).toStrictEqual('function');
   });
@@ -35,14 +42,7 @@ describe('ConsulIO', () => {
   });
 
   describe('key2file', () => {
-    let cio;
-    const testfile = './testfile';
-    const testpath = 'dc1/home/env/test/path';
-    const urlSuffix = 'v1/kv';
-
     beforeAll(async () => {
-      const consulUrl = 'https://localhost:8500';
-      const options = { consulUrl };
       const consulHelper = new ConsulHelper(options);
 
       const fileExists = fs.existsSync(testfile);
@@ -70,13 +70,7 @@ describe('ConsulIO', () => {
   });
 
   describe('getValue', () => {
-    let cio;
-    const testpath = 'dc1/home/env/test/path';
-    const urlSuffix = 'v1/kv';
-
     beforeAll(async () => {
-      const consulUrl = 'https://localhost:8500';
-      const options = { consulUrl };
       const consulHelper = new ConsulHelper(options);
 
       await consulHelper.putConfig(`${urlSuffix}/${testpath}`, 'testkey', 'testvalue');
@@ -92,6 +86,47 @@ describe('ConsulIO', () => {
       await (async () => {
         return expect(cio.getValue(testpath, 'testkey')).resolves.toEqual('testvalue');
       })();
+    });
+  });
+
+  describe('setValue', () => {
+    beforeAll(async () => {
+      const consulHelper = new ConsulHelper(options);
+
+      await consulHelper.putConfig(`${urlSuffix}/${testpath}`, 'testkey', '');
+
+      cio = new ConsulIO(options);
+    });
+
+    it('must be a function', async () => {
+      expect(typeof cio.setValue).toStrictEqual('function');
+    });
+
+    it('must set specified value to the given key', async () => {
+      await (async () => {
+        return expect(cio.setValue(testpath, 'testkey', 'testvalue')).resolves.toEqual(undefined);
+      })();
+    });
+  });
+
+  describe('file2key', () => {
+    beforeAll(async () => {
+      const consulHelper = new ConsulHelper(options);
+
+      await consulHelper.putConfig(`${urlSuffix}/${testpath}`, 'testkey', '');
+      fs.writeFileSync(testfile, 'testvalue');
+      cio = new ConsulIO(options);
+    });
+
+    it('must be a function', async () => {
+      expect(typeof cio.file2key).toStrictEqual('function');
+    });
+
+    it('must set content of file to the given key', async () => {
+      await (async () => {
+        return expect(cio.file2key(testpath, 'testkey', testfile)).resolves.toEqual(undefined);
+      })();
+      expect(cio.getValue(testpath, 'testkey')).resolves.toEqual('testvalue');
     });
   });
 });

@@ -45,6 +45,41 @@ class ConsulHelper {
       });
     });
   }
+
+  async getConfig(path, key) {
+    const urlObject = url.parse(this.options.consulUrl);
+
+    urlObject.pathname = `${path}/${key}`;
+    const requestOptions = {
+      url: url.format(urlObject)
+    };
+
+    if (this.options.token) {
+      requestOptions.headers = {
+        'x-consul-token': this.options.token,
+        timeout: 20000 // to wait until consul is up
+      };
+    }
+
+    return new Promise((resolve) => {
+      request.get(requestOptions, (err, res) => {
+        if (err) {
+          throw new Error(`Get ${key} from consul failed cause of: ${err}`);
+        }
+        switch (res.statusCode) {
+          case 200:
+            resolve();
+            break;
+          case 403:
+            throw new Error(`Get ${key} from consul failed cause of "No valid token provided"`);
+          case 500:
+            throw new Error(`Get ${key} from consul failed cause of "Internal server error"`);
+          default:
+            throw new Error(`Get ${key} from consul failed cause of unexpected status code: ${res.statusCode}`);
+        }
+      });
+    });
+  }
 }
 
 module.exports = ConsulHelper;
