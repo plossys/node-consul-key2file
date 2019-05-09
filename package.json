@@ -39,7 +39,7 @@
     "@sealsystems/eslint-config-es": "3.3.5",
     "@sealsystems/mocha": "2.0.3",
     "@sealsystems/semantic-release": "4.0.1",
-    "insecure": "0.0.4"
+    "@sealsystems/test-config-jest": "1.0.5"
   },
   "release": {
     "extends": "@sealsystems/semantic-release-config/node-module"
