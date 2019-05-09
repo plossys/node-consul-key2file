@@ -22,7 +22,7 @@ class ConsulHelper {
     if (this.options.token) {
       requestOptions.headers = {
         'x-consul-token': this.options.token,
-        timeout: 20000 // to wait until consul is up
+        timeout: 100000 // to wait until consul is up
       };
     }
 
