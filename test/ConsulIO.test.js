@@ -5,6 +5,8 @@ const fs = require('fs');
 const ConsulHelper = require('./ConsulHelper');
 const ConsulIO = require('../lib/ConsulIO');
 
+jest.setTimeout(30000);
+
 /* eslint-disable no-sync */
 /* eslint-disable no-new */
 describe('ConsulIO', () => {
