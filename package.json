@@ -46,7 +46,7 @@
     "extends": "@sealsystems/semantic-release-config/node-module"
   },
   "publishConfig": {
-    "access": "http://plossys.jfrog.io/plossys/api/npm/npm-local"
+    "registry": "http://plossys.jfrog.io/plossys/api/npm/npm-local"
   },
   "jest": {
     "testEnvironment": "node",
