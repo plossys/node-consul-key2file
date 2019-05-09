@@ -39,17 +39,18 @@ class ConsulHelper {
             } else {
               throw new Error(`Put ${key} to consul failed cause of: ${err}`);
             }
-          }
-          switch (res.statusCode) {
-            case 200:
-              resolve();
-              break;
-            case 403:
-              throw new Error(`Put ${key} to consul failed cause of "No valid token provided"`);
-            case 500:
-              throw new Error(`Put ${key} to consul failed cause of "Internal server error"`);
-            default:
-              throw new Error(`Put ${key} to consul failed cause of unexpected status code: ${res.statusCode}`);
+          } else {
+            switch (res.statusCode) {
+              case 200:
+                resolve();
+                break;
+              case 403:
+                throw new Error(`Put ${key} to consul failed cause of "No valid token provided"`);
+              case 500:
+                throw new Error(`Put ${key} to consul failed cause of "Internal server error"`);
+              default:
+                throw new Error(`Put ${key} to consul failed cause of unexpected status code: ${res.statusCode}`);
+            }
           }
         });
       }
