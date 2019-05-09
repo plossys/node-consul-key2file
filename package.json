@@ -1,6 +1,6 @@
 {
   "name": "@sealsystems/consul-key2file",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Provides support of reading values from consul and writes it to file.",
   "main": "lib/ConsulIO.js",
   "scripts": {
