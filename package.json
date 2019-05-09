@@ -2,9 +2,11 @@
   "name": "@sealsystems/consul-key2file",
   "version": "0.0.0",
   "description": "Provides support of reading values from consul and writes it to file.",
-  "main": "lib/index.js",
+  "main": "lib/ConsulIO.js",
   "scripts": {
-    "test": "test-run",
+    "pretest": "docker-compose up -d",
+    "test": "LOG_LEVEL=fatal NODE_TLS_REJECT_UNAUTHORIZED=0 test-run",
+    "posttest": "docker-compose kill",
     "test:coverage": "test-coverage",
     "test:coverage:check": "test-coverage-check",
     "test:report": "test-report",
@@ -15,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sealsystems/node-consul-key2file.git"
+    "url": "git+https://github.com/plossys/node-consul-key2file.git"
   },
   "keywords": [
     "consul",
@@ -24,9 +26,15 @@
   "author": "SEAL Systems AG",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sealsystems/node-consul-key2file/issues"
+    "url": "https://github.com/plossys/node-consul-key2file/issues"
   },
-  "homepage": "https://github.com/sealsystems/node-consul-key2file#readme",
+  "homepage": "https://github.com/plossys/node-consul-key2file#readme",
+  "dependencies": {
+    "@sealsystems/error": "2.0.3",
+    "@sealsystems/jest": "2.0.1",
+    "@sealsystems/log": "1.3.1",
+    "@sealsystems/seal-consul": "3.5.7"
+  },
   "devDependencies": {
     "@sealsystems/eslint-config-es": "3.3.5",
     "@sealsystems/mocha": "2.0.3",
@@ -37,6 +45,10 @@
     "extends": "@sealsystems/semantic-release-config/node-module"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "http://plossys.jfrog.io/plossys/api/npm/npm-local"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "timeout": "30000"
   }
 }
