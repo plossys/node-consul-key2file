@@ -35,6 +35,7 @@ jobs:
           paths:
             - ./node_modules
 
+      - setup_remote_docker
       - run: &docker-login
           name: Configure Docker repository
           command: |
