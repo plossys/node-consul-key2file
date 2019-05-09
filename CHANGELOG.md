@@ -1,3 +1,14 @@
+## 1.0.1 (2019-05-09)
+
+### Chores
+
+
+#### Review ([45cb316](https://github.com/plossys/node-consul-key2file/commit/45cb316))
+
+
+
+---
+
 ## 1.0.0 (2019-05-09)
 
 ### Chores
