@@ -39,6 +39,7 @@
     "@sealsystems/eslint-config-es": "3.3.5",
     "@sealsystems/mocha": "2.0.3",
     "@sealsystems/semantic-release": "4.0.1",
+    "@sealsystems/semantic-release-config": "3.3.0",
     "@sealsystems/test-config-jest": "1.0.5"
   },
   "release": {
