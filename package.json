@@ -48,6 +48,7 @@
     "access": "http://plossys.jfrog.io/plossys/api/npm/npm-local"
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "timeout": "30000"
   }
 }
