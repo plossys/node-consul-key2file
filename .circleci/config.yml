@@ -22,6 +22,12 @@ jobs:
 
     steps:
       - checkout
+      - run: &configure-node-js
+          name: Configure Node.js
+          command: |
+            curl -k -u "${JFROG_CREDENTIALS}" "https://plossys.jfrog.io/plossys/api/npm/auth" > ~/.npmrc
+            npm config set registry http://plossys.jfrog.io/plossys/api/npm/npm-repo
+            node --version
       - restore_cache: &restore-cache
           key: dependency-cache-{{ checksum "package.json" }}
       - run: &install-dependencies
@@ -60,6 +66,8 @@ jobs:
 
     steps:
       - checkout
+      - run:
+          <<: *configure-node-js
       - restore_cache:
           <<: *restore-cache
       - run:
