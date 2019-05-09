@@ -22,27 +22,38 @@ class ConsulHelper {
     if (this.options.token) {
       requestOptions.headers = {
         'x-consul-token': this.options.token,
-        timeout: 100000 // to wait until consul is up
+        timeout: 20000 // to wait until consul is up
       };
     }
 
     return new Promise((resolve) => {
-      request.put(requestOptions, (err, res) => {
-        if (err) {
-          throw new Error(`Put ${key} to consul failed cause of: ${err}`);
-        }
-        switch (res.statusCode) {
-          case 200:
-            resolve();
-            break;
-          case 403:
-            throw new Error(`Put ${key} to consul failed cause of "No valid token provided"`);
-          case 500:
-            throw new Error(`Put ${key} to consul failed cause of "Internal server error"`);
-          default:
-            throw new Error(`Put ${key} to consul failed cause of unexpected status code: ${res.statusCode}`);
-        }
-      });
+      const maxTrials = 100;
+      let trials = 0;
+      function attempt() {
+
+        request.put(requestOptions, (err, res) => {
+          if (err) {
+            if (trials < maxTrials) {
+              trials++;
+              setTimeout(() => attempt(), 1000);
+            } else {
+              throw new Error(`Put ${key} to consul failed cause of: ${err}`);
+            }
+          }
+          switch (res.statusCode) {
+            case 200:
+              resolve();
+              break;
+            case 403:
+              throw new Error(`Put ${key} to consul failed cause of "No valid token provided"`);
+            case 500:
+              throw new Error(`Put ${key} to consul failed cause of "Internal server error"`);
+            default:
+              throw new Error(`Put ${key} to consul failed cause of unexpected status code: ${res.statusCode}`);
+          }
+        });
+      }
+      attempt();
     });
   }
 
