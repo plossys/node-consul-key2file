@@ -35,16 +35,15 @@ jobs:
           paths:
             - ./node_modules
 
-      - setup_remote_docker
-      - run: &docker-login
-          name: Configure Docker repository
-          command: |
-            # Do not show output to prevent password leaks
-            docker login -u ${DOCKERHUB_CREDENTIALS%%:*} -p ${DOCKERHUB_CREDENTIALS#*:} >/dev/null 2>&1
-
-      - run:
-          name: Run tests
-          command: npm run test
+      # - setup_remote_docker
+      # - run: &docker-login
+      # name: Configure Docker repository
+      # command: |
+      # Do not show output to prevent password leaks
+      # docker login -u ${DOCKERHUB_CREDENTIALS%%:*} -p ${DOCKERHUB_CREDENTIALS#*:} >/dev/null 2>&1
+      # - run:
+      # name: Run tests
+      # command: npm run test
       # - run:
       # name: Run code coverage
       # command: npm run test:coverage
