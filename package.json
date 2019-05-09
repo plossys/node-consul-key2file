@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sealsystems/node-consul-key2file.git"
+    "url": "git+https://github.com/plossys/node-consul-key2file.git"
   },
   "keywords": [
     "consul",
@@ -26,9 +26,9 @@
   "author": "SEAL Systems AG",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sealsystems/node-consul-key2file/issues"
+    "url": "https://github.com/plossys/node-consul-key2file/issues"
   },
-  "homepage": "https://github.com/sealsystems/node-consul-key2file#readme",
+  "homepage": "https://github.com/plossys/node-consul-key2file#readme",
   "dependencies": {
     "@sealsystems/error": "2.0.3",
     "@sealsystems/jest": "2.0.1",
