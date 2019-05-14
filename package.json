@@ -1,6 +1,6 @@
 {
   "name": "consul-key2file",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Provides support of reading values from consul and writes it to file.",
   "main": "lib/ConsulIO.js",
   "scripts": {

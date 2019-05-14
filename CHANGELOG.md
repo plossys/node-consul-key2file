@@ -1,3 +1,14 @@
+## 1.0.3 (2019-05-14)
+
+### Chores
+
+
+#### Review ([e8c2151](https://github.com/plossys/node-consul-key2file/commit/e8c2151))
+
+
+
+---
+
 ## 1.0.2 (2019-05-09)
 
 ### Chores
