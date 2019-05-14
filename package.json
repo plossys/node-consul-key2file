@@ -43,7 +43,7 @@
     "@sealsystems/test-config-jest": "1.0.5"
   },
   "release": {
-    "extends": "@sealsystems/semantic-release-config/node-binary"
+    "extends": "@sealsystems/semantic-release-config/node-module"
   },
   "publishConfig": {
     "registry": "http://plossys.jfrog.io/plossys/api/npm/npm-local"
